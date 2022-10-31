@@ -1,18 +1,23 @@
 /** @type {import('next').NextConfig} */
 
 const nextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   swcMinify: true,
   assetPrefix: '/docs',
   rewrites() {
     return [
-      { source: '/docs/_next/:path*', destination: '/_next/:path*' }
+      { source: '/_next/:path*', destination: '/_next/:path*' }
     ]
   },
   images: {
     unoptimized: true
-  }
-
+  },
+  publicRuntimeConfig: {
+    // Will be available on both server and client
+    staticFolder: '/static',
+  },
+  distDir: 'docs',
+  basePath: '/docs',
 }
 
 module.exports = nextConfig
